@@ -52,17 +52,32 @@ export default (date) => {
 		day = day || 0;
 		const d = new Date(date);
 		d.setDate(d.getDate() + day);
-		return d.valueOf();
+		return Number(d.valueOf());
 	};
 
 	const getMonth = (time) => {
 		if (time && typeof time !== 'number') {
-			throw new Error('Syntax error, day\'s types can only be number.');
+			throw new Error('Syntax error, time\'s types can only be number.');
 		}
 		time = time || date;
 		const d = new Date(time);
 		return month[d.getMonth()];
-	}
+	};
 
-	return {date, week, month, getFirstDay, format, addDay, getMonth};
+	const getCurrentMonth = (year, month) => {
+		if (month && typeof month !== 'number') {
+			throw new Error('Syntax error, month\'s types can only be number.');
+		}
+		if (year && typeof year !== 'number') {
+			throw new Error('Syntax error, year\'s types can only be number.');
+		}
+		year = year || new Date(date).getFullYear();
+		month = month  || 0;
+		const current = new Date();
+		current.setFullYear(year);
+		current.setMonth(month);
+		return current.valueOf();
+	};
+
+	return {date, week, month, getFirstDay, format, addDay, getMonth, getCurrentMonth};
 };

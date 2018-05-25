@@ -56,6 +56,44 @@
 }
 
 .time-card .calendar .week {
-  padding: 5px 0;
   width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.time-card .calendar .week .day {
+  flex-grow: 1;
+  margin: 5px;
+  height: 110px;
+  border: 1px solid #999999;
+  font-size: 12px;
+}
+
+.time-card .calendar .week .holiday {
+  background: #99EA5F;
+}
+
+.time-card .calendar .week .opacity {
+  opacity: 0.5;
+}
+
+.time-card .calendar .week .day .event-title {
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+}
+.time-card .calendar .week .day .event-title > span:last-child {
+  background: #56B265;
+}
+
+.time-card .calendar .week .day .event-list {
+  padding: 0 10px;
+  height: 45%;
+}
+.time-card .calendar .week .day .event-day {
+  padding: 0 10px;
+  text-align: end;
+}
+.time-card .calendar .week .day .event-day-holiday {
+  color: #CE8F98;
 }
