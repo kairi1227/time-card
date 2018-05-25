@@ -3,10 +3,11 @@
  * auth: XuQiang
  **/
 import React from 'react';
+import PropTypes from 'prop-types';
 import moment from "../util/moment";
 
-export default ({year, month}) => {
-	const cm = moment().getCurrentMonth(Number(year), moment().month.indexOf(month));
+const Calendar = ({year, month, item}) => {
+	const cm = moment().getCurrentMonth(Number(year), month);
 	const firstDay = moment(cm).getFirstDay();
 
 	const isCM = moment(cm).format('MM');
@@ -32,6 +33,9 @@ export default ({year, month}) => {
 								{
 									Array.from({length: 7}, (v, i) => i).map((d, i) => {
 										const cur = moment(firstDay).addDay(index * 7 + d);
+										if(item) {
+											return item(cur);
+										}
 										return (
 											<Item cur={cur} i={i} isCM={isCM} key={d}/>
 										)
@@ -59,3 +63,17 @@ const Item = ({i, isCM, cur}) => {
 		</div>
 	);
 };
+
+Calendar.propTypes = {
+	year: PropTypes.number.isRequired,
+	month: PropTypes.number.isRequired,
+	item: PropTypes.func
+};
+
+Calendar.defaultProps = {
+	year: 2018,
+	month: 1,
+	item: null
+};
+
+export default Calendar;

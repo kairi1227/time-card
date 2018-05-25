@@ -41,7 +41,8 @@ class App extends Component {
 					</div>
 				</div>
 				{/* 右边日历 */}
-				<Calendar year={year} month={month}/>
+				{/*<Calendar year={year} month={month} item={(cur) => <div>{moment(cur).format('YYYY-MM-DD')}</div>}/>*/}
+				<Calendar year={year} month={moment().month.indexOf(month)}/>
 			</div>
 		);
 	}
