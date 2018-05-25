@@ -34,3 +34,8 @@ it('test addDay function', () => {
 	const d = moment(date).addDay(-2);
 	expect(moment(d).format('MM-DD')).toBe('05-22');
 });
+
+it('test getMonth function', () => {
+	const d = moment(date).getMonth();
+	expect(d).toBe('May.');
+});

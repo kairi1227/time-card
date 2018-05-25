@@ -38,6 +38,8 @@ export default (date) => {
 					return (Array(2).join('0') + d.getMinutes()).slice(-2);
 				case 'ss':
 					return (Array(2).join('0') + d.getSeconds()).slice(-2);
+				default:
+					return '';
 			}
 		});
 		return result.join('-');
@@ -53,5 +55,14 @@ export default (date) => {
 		return d.valueOf();
 	};
 
-	return {date, week, month, getFirstDay, format, addDay};
+	const getMonth = (time) => {
+		if (time && typeof time !== 'number') {
+			throw new Error('Syntax error, day\'s types can only be number.');
+		}
+		time = time || date;
+		const d = new Date(time);
+		return month[d.getMonth()];
+	}
+
+	return {date, week, month, getFirstDay, format, addDay, getMonth};
 };
