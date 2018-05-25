@@ -18,3 +18,7 @@ This demo is based on React.
 ### run 
 
 `npm start`
+
+### result
+
+![example](https://static.oschina.net/uploads/img/201805/25142938_9Agz.png)
