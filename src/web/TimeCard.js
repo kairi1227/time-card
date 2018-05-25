@@ -19,6 +19,10 @@ class App extends Component {
 		const cm = moment().getCurrentMonth(Number(year), moment().month.indexOf(month));
 		const firstDay = moment(cm).getFirstDay();
 
+		const isCM = moment(cm).format('MM');
+		const lastDay = moment(moment(firstDay).addDay(35)).format('MM') === isCM;
+		const row = lastDay ? 6 :5;
+
 		return (
 			<div className="main">
 				<div className={'card-menu'}>
@@ -52,13 +56,12 @@ class App extends Component {
 					</div>
 					<div className={'calendar'}>
 						{
-							Array.from({length: 5}).map((v, index) => {
+							Array.from({length: row}).map((v, index) => {
 								return (
 									<div className={'week'} key={index}>
 										{
 											Array.from({length: 7}, (v, i) => i).map((d, i) => {
 												const cur = moment(firstDay).addDay(index * 7 + d);
-												const isCM = moment(cm).format('MM');
 												return (
 													<div
 														className={`day ${i % 6 === 0 ? 'holiday' : ''} ${isCM !== moment(cur).format('MM') ? 'opacity' : ''}`}
